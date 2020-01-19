@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How JS</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="668px" style="border: 10px solid red ;"></canvas>
+<script>
+    function Circle(x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    function getRandomHex() { //tao ra bao nhieu qua bong ngau nhien//
+        return Math.floor(Math.random() * 200);
+    }
+
+    function getRandomColor() { //tao ra mau ngau nhien//
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + "," + green + "," + blue + ")"
+    }
+
+    function createCircle() {
+        let canvas=document.getElementById("myCanvas");
+        let ctx=canvas.getContext("2d");
+        let radius=Math.floor(Math.random()*50);
+        let color = getRandomColor();
+        let x =Math.random()* window.innerWidth; //tra ve kich thuoc cua cua so trinh duyet//
+        let y =Math.random()* window.innerHeight;
+        let circle = new Circle(x, y, radius);
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+
+    }
+
+    function createMultipleCircle() {
+        for (let i = 0; i < 50; i++) {
+            createCircle();
+
+        }
+    }
+    createMultipleCircle();
+
+</script>
+</body>
+</html>
